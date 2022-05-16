@@ -22,9 +22,15 @@ namespace TheGame
             __controller.GenerateMap(Controls);
         }
 
+        public void ShowData(int[,] data) { 
+            //заполняем данными форму
+        }
         
+
+        //Кнопка старта
         private void button1_Click(object sender, EventArgs e)
         {
+            __controller.startGame();
         }
     }
 }

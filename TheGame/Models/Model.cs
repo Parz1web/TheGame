@@ -17,7 +17,7 @@ namespace TheGame.Models
         public int[,] map;
         public Button[,] buttons;
 
-        public delegate void TransferDataModel(int[,] map, Button[,] buttons);
+        public delegate void TransferDataModel(int[,] map);
         public event TransferDataModel ModelTransfer;
 
         private ControlCollection _controls;
@@ -25,6 +25,15 @@ namespace TheGame.Models
         public Model(ControlCollection controls)
         {
             _controls = controls;
+        }
+
+
+        public void InitField() { 
+        //рандомно заполняется двумерный массив
+
+
+
+           
         }
 
         public void setup()
@@ -51,6 +60,7 @@ namespace TheGame.Models
 
             CreateMap();
             HideCells();
+             ModelTransfer.Invoke(map);
         }
 
         public void HideCells()

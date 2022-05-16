@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TheGame.Controllers;
+using TheGame.Models;
 
 namespace TheGame
 {
@@ -18,8 +19,13 @@ namespace TheGame
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Controller controller = new Controller();
+
+            Model model = new Model();
+            Controller controller = new Controller(model);
             Form1 form1 = new Form1(controller);
+
+            model.ModelTransfer += form1.ShowData;
+          
             Application.Run(form1);
         }
     }

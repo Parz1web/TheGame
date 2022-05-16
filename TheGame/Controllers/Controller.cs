@@ -12,10 +12,11 @@ namespace TheGame.Controllers
     {
         private Model _model;
 
+        // модель передавать через конструктор
         public void GenerateMap(ControlCollection controlCollection)
         {
             _model = new Model(controlCollection);
-            _model.GenerateMap();
+           
         }
         public void onCellPressed(object sender, EventArgs e)
         {
@@ -24,6 +25,10 @@ namespace TheGame.Controllers
         public void checkRight()
         {
             _model.checkRight();
+        }
+
+        public void StartGame() { 
+          _model.GenerateMap();
         }
     }
 }
