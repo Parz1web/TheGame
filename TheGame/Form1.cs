@@ -7,24 +7,30 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TheGame.Controllers;
 
 namespace TheGame
 {
     public partial class Form1 : Form
     {
 
-        private Controller.Controller __controller;
-        public Form1(Controller.Controller controller)
+        private Controller __controller;
+        public Form1(Controller controller)
         {
             InitializeComponent();
             __controller = controller;
-            __controller.GenerateMap();
+            __controller.GenerateMap(Controls);
         }
 
+        public void ShowData(int[,] data) { 
+            //заполняем данными форму
+        }
         
+
+        //Кнопка старта
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            __controller.startGame();
         }
     }
 }
