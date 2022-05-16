@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TheGame.Controllers;
 
 namespace TheGame
 {
@@ -15,12 +16,9 @@ namespace TheGame
         [STAThread]
         static void Main()
         {
-            
-           
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Model.Model _model = new Model.Model();
-            Controller.Controller controller = new Controller.Controller(_model);
+            Controller controller = new Controller();
             Form1 form1 = new Form1(controller);
             Application.Run(form1);
         }

@@ -6,10 +6,11 @@ using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.Windows.Forms;
+using static System.Windows.Forms.Control;
 
-namespace TheGame.Model
+namespace TheGame.Models
 {
-    public class Model : Form
+    public class Model
     {
         const int n = 3;
         const int sizeButton = 50;
@@ -18,10 +19,12 @@ namespace TheGame.Model
 
         public delegate void TransferDataModel(int[,] map, Button[,] buttons);
         public event TransferDataModel ModelTransfer;
-       
-        public Model()
-        {
 
+        private ControlCollection _controls;
+
+        public Model(ControlCollection controls)
+        {
+            _controls = controls;
         }
 
         public void setup()
@@ -209,7 +212,7 @@ namespace TheGame.Model
                     button.Text = map[i, j].ToString();
                     button.Click += OnCellPressed;
                     button.Location = new Point(j * sizeButton, i * sizeButton);
-                    this.Controls.Add(button);
+                    _controls.Add(button);
                 }
             }
         }
@@ -250,7 +253,7 @@ namespace TheGame.Model
             {
                 for (int j = 0; j < n * n; j++)
                 {
-                    this.Controls.Remove(buttons[i, j]);
+                    _controls.Remove(buttons[i, j]);
                 }
             }
             GenerateMap();
