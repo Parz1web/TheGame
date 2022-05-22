@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using TheGame.Models;
 using static System.Windows.Forms.Control;
 
@@ -10,20 +11,35 @@ namespace TheGame.Controllers
 {
     public class Controller
     {
-        private Model _model;
+        public Map Map;
+        private Cell[,] _correctCells;
+        public Controller()
+        {
+            Map = new Map();
+            _correctCells = Map.Cells.Clone() as Cell[,];
+        }
 
-        public void GenerateMap(ControlCollection controlCollection)
+        
+
+        public void checkRight(Action<Map> renderHandler)
         {
-            _model = new Model(controlCollection);
-            _model.GenerateMap();
+            if (Map.IsSolved())
+            {
+                MessageBox.Show("Верно!");
+                Map = new Map();
+                renderHandler(Map);
+                _correctCells = Map.Cells.Clone() as Cell[,];
+            }
+            else
+            {
+               
+                MessageBox.Show("Неправильно!");
+            }
+                
         }
-        public void onCellPressed(object sender, EventArgs e)
+        public void OnCellPressed(Cell cell)
         {
-            _model.OnCellPressed(sender, e);
-        }
-        public void checkRight()
-        {
-            _model.checkRight();
+            cell.Increment();
         }
     }
 }
