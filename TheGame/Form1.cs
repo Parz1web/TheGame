@@ -58,6 +58,8 @@ namespace TheGame
             }
         }
         
+
+        //Кнопка старта
         private void button1_Click(object sender, EventArgs e)
         {
             _controller.checkRight(RenderMap);
